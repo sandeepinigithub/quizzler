@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/question.dart';
 import 'package:quizzler/quiz_brain.dart';
 
 void main() => runApp(Quizzler());
@@ -42,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.question[i].questionText, //Here we are showing questions.
+                quizBrain.getQuestionText(i), //Here we are showing questions.
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -67,9 +66,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer = quizBrain.question[i].questionAnswer;
+                bool correctAnswer = quizBrain.getQuestionAnswer(i);
                 setState(() {
-                  if (correctAnswer == true && i < quizBrain.question.length) {
+                  if (correctAnswer == true) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       color: Colors.green,
@@ -100,9 +99,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer = quizBrain.question[i].questionAnswer;
+                bool correctAnswer = quizBrain.getQuestionAnswer(i);
                 setState(() {
-                  if (correctAnswer == false && i < quizBrain.question.length) {
+                  if (correctAnswer == false) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       color: Colors.green,
