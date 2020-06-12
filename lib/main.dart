@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/question.dart';
+import 'package:quizzler/quiz_brain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -26,15 +27,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Question> question = [
-    Question(
-        q: 'All sides of a scalene triangle have the same length.', a: false),
-    Question(
-      q: '9 x 8 = 72.',
-      a: true,
-    ),
-    Question(q: '-2 is an integer.', a: false)
-  ];
+  QuizBrain quizBrain = QuizBrain();
   List<Icon> scoreKeeper = [];
   int i = 0;
   @override
@@ -49,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                question[i].questionText, //Here we are showing questions.
+                quizBrain.question[i].questionText, //Here we are showing questions.
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,9 +67,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer = question[i].questionAnswer;
+                bool correctAnswer = quizBrain.question[i].questionAnswer;
                 setState(() {
-                  if (correctAnswer == true && i < question.length) {
+                  if (correctAnswer == true && i < quizBrain.question.length) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       color: Colors.green,
@@ -107,9 +100,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer = question[i].questionAnswer;
+                bool correctAnswer = quizBrain.question[i].questionAnswer;
                 setState(() {
-                  if (correctAnswer == false && i < question.length) {
+                  if (correctAnswer == false && i < quizBrain.question.length) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       color: Colors.green,
